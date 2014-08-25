@@ -1,0 +1,13 @@
+<div class="panel panel-default">
+	<div class="panel-heading">
+		<img ng-src="images/jenkins.png" />&nbsp;<img ng-src="images/{{job.color}}.png" />&nbsp;<img ng-src="images/{{job.healthReport[0].iconUrl}}" title="{{job.healthReport[0].description}}"/>&nbsp;<a href="{{job.url}}">{{job.displayName}}</a>
+	</div>
+	<div class="panel-body">
+		<div ng-repeat="build in job.buildsDetails | orderBy:'-number'">
+			<div>
+				<img ng-src="images/{{build.result | jenkinsStatusColorFilter}}.png" /><a
+					href="{{build.url}}">Build {{build.number}}</a> : <ul><li ng-repeat="change in build.changeSet.items"><b>{{change.author.fullName}}&nbsp;:</b>&nbsp;{{change.msg}}</li></ul>
+			</div>
+		</div>
+	</div>
+</div>

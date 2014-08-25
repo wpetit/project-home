@@ -1,0 +1,42 @@
+<div class="panel panel-default">
+	<div class="panel-heading">
+		<img ng-src="images/sonar.png" />&nbsp;<a
+			href="{{sonarUrl}}dashboard/index/{{project.key}}">{{project.name}}</a>
+	</div>
+	<div class="panel-body">
+		<div>
+			<b>Issues :</b>&nbsp;<a
+				href="{{sonarUrl}}drilldown/issues/{{project.key}}">{{project.violations.number}}</a>&nbsp;<img
+				ng-src="images/{{project.violations | sonarViolationsChangeStatus}}" />
+		</div>
+		<div>
+			<b>Rules compliance :</b>&nbsp;<a
+				href="{{sonarUrl}}drilldown/measures/{{project.id}}?highlight=weighted_violations&metric=weighted_violations">{{project.violationsDensity.number}}&nbsp;%</a>
+		</div>
+		<div>
+			<img ng-src="images/Blocker.png" />&nbsp;Blocker :&nbsp;<a
+				href="{{sonarUrl}}drilldown/issues/{{project.key}}?severity=BLOCKER">{{project.blockerViolations.number}}</a>&nbsp;<img
+				ng-src="images/{{project.blockerViolations | sonarViolationsChangeStatus}}" />
+		</div>
+		<div>
+			<img ng-src="images/Critical.png" />&nbsp;Critical :&nbsp;<a
+				href="{{sonarUrl}}drilldown/issues/{{project.key}}?severity=CRITICAL">{{project.criticalViolations.number}}</a>&nbsp;<img
+				ng-src="images/{{project.criticalViolations | sonarViolationsChangeStatus}}" />
+		</div>
+		<div>
+			<img ng-src="images/Major.png" />&nbsp;Major :&nbsp;<a
+				href="{{sonarUrl}}drilldown/issues/{{project.key}}?severity=MAJOR">{{project.majorViolations.number}}</a>&nbsp;<img
+				ng-src="images/{{project.majorViolations | sonarViolationsChangeStatus}}" />
+		</div>
+		<div>
+			<img ng-src="images/Minor.png" />&nbsp;Minor :&nbsp;<a
+				href="{{sonarUrl}}drilldown/issues/{{project.key}}?severity=MINOR">{{project.minorViolations.number}}</a>&nbsp;<img
+				ng-src="images/{{project.minorViolations | sonarViolationsChangeStatus}}" />
+		</div>
+		<div>
+			<img ng-src="images/Info.png" />&nbsp;Info :&nbsp;<a
+				href="{{sonarUrl}}drilldown/issues/{{project.key}}?severity=INFO">{{project.infoViolations.number}}</a>&nbsp;<img
+				ng-src="images/{{project.infoViolations | sonarViolationsChangeStatus}}" />
+		</div>
+	</div>
+</div>
