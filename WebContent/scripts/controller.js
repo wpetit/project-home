@@ -10,6 +10,7 @@ environmentAppControllers.controller('EnvironmentAppCtrl', function($scope,
 			$scope.jenkinsJobs = data.jenkinsJobs;
 			$scope.sonarUrl = data.sonarUrl;
 			$scope.jenkinsUrl = data.jenkinsUrl;
+			$scope.sonarPeriod = data.sonarPeriodForComparison;
 			$scope.getJenkinsJobs();
 			$scope.getSonarViolations();
 		}).error(function(data) {
@@ -47,11 +48,24 @@ environmentAppControllers.controller('EnvironmentAppCtrl', function($scope,
 		environmentService.getSonarResourcesAndAnalysisPeriod($scope.sonarUrl).success(function(data) {
 			$scope.sonarAnalysis = new Array();
 			for(i=0; i< data.length;i++) {
-				$scope.getResourceAnalysis(data[i].name,data[i].key,data[i].id,data[i].p3d);
+				var perdiod =
+				$scope.getResourceAnalysis(data[i].name,data[i].key,data[i].id,$scope.getPeriodDateTime(data[i]));
 			}
 		}).error(function(data, status) {
 			$scope.sonarStatus = "Sonar is not available for the moment : Error " + status+".";
 		});
+	};
+	
+	$scope.getPeriodDateTime = function(resourcesData) {
+		var periodDateTime = null;
+		if($scope.sonarPeriod == 1) {
+			periodDateTime = resourcesData.p1d;
+		} else if($scope.sonarPeriod == 2) {
+			periodDateTime = resourcesData.p2d; 
+		} else {
+			periodDateTime = resourcesData.p3d;
+		}
+		return periodDateTime;
 	};
 	
 	$scope.getResourceAnalysis = function(resourceName,resourceKey,resourceId,fromDateTime) {
