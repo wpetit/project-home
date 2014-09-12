@@ -95,6 +95,34 @@ environmentAppControllers.controller('EnvironmentAppCtrl', function($scope,
 			resourceAnalysis.violationsDensity = new Object();
 			resourceAnalysis.violationsDensity.previousNumber=dataByResource[0].cells[0].v[6];
 			resourceAnalysis.violationsDensity.number=dataByResource[0].cells[dataByResource[0].cells.length-1].v[6];
+			resourceAnalysis.complexity = new Object();
+			resourceAnalysis.complexity.previousNumber=dataByResource[0].cells[0].v[7];
+			resourceAnalysis.complexity.number=dataByResource[0].cells[dataByResource[0].cells.length-1].v[7];
+			resourceAnalysis.classComplexity = new Object();
+			resourceAnalysis.classComplexity.previousNumber=dataByResource[0].cells[0].v[8];
+			resourceAnalysis.classComplexity.number=dataByResource[0].cells[dataByResource[0].cells.length-1].v[8];
+			resourceAnalysis.fileComplexity = new Object();
+			resourceAnalysis.fileComplexity.previousNumber=dataByResource[0].cells[0].v[9];
+			resourceAnalysis.fileComplexity.number=dataByResource[0].cells[dataByResource[0].cells.length-1].v[9];
+			resourceAnalysis.functionComplexity = new Object();
+			resourceAnalysis.functionComplexity.previousNumber=dataByResource[0].cells[0].v[10];
+			resourceAnalysis.functionComplexity.number=dataByResource[0].cells[dataByResource[0].cells.length-1].v[10];
+			resourceAnalysis.duplicatedBlocks = new Object();
+			resourceAnalysis.duplicatedBlocks.previousNumber=dataByResource[0].cells[0].v[11];
+			resourceAnalysis.duplicatedBlocks.number=dataByResource[0].cells[dataByResource[0].cells.length-1].v[11];
+			resourceAnalysis.duplicatedFiles = new Object();
+			resourceAnalysis.duplicatedFiles.previousNumber=dataByResource[0].cells[0].v[12];
+			resourceAnalysis.duplicatedFiles.number=dataByResource[0].cells[dataByResource[0].cells.length-1].v[12];
+			resourceAnalysis.duplicatedLines = new Object();
+			resourceAnalysis.duplicatedLines.previousNumber=dataByResource[0].cells[0].v[13];
+			resourceAnalysis.duplicatedLines.number=dataByResource[0].cells[dataByResource[0].cells.length-1].v[13];
+			resourceAnalysis.duplicatedLinesDensity = new Object();
+			resourceAnalysis.duplicatedLinesDensity.previousNumber=dataByResource[0].cells[0].v[14];
+			resourceAnalysis.duplicatedLinesDensity.number=dataByResource[0].cells[dataByResource[0].cells.length-1].v[14];
+			resourceAnalysis.coverage = new Object();
+			resourceAnalysis.coverage.previousNumber=dataByResource[0].cells[0].v[15];
+			resourceAnalysis.coverage.number=dataByResource[0].cells[dataByResource[0].cells.length-1].v[15];
+						
 			$scope.sonarAnalysis.push(resourceAnalysis);
 		}).error(function(data, status) {
 			$scope.sonarStatus = "Sonar is not available for the moment : Error " + status+".";
