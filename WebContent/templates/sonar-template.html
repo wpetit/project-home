@@ -45,11 +45,12 @@
 				href="{{sonarUrl}}/drilldown/measures/{{project.id}}?metric=duplicated_files">{{project.duplicatedFiles.number}}</a>&nbsp;<img
 				ng-src="images/{{project.duplicatedFiles | sonarViolationsChangeStatus}}" />
 		</div>
-		<br/>
-		<div>
+		<br ng-if="project.coverage.number != null"/>
+		<div ng-if="project.coverage.number != null">
 			<b>Unit Tests Coverage :</b>&nbsp;<a
 				href="{{sonarUrl}}/drilldown/measures/{{project.id}}?metric=coverage">{{project.coverage.number}}&nbsp;%</a>&nbsp;<img
 				ng-src="images/{{project.coverage | sonarViolationsChangeStatusInverse}}" />
+			
 		</div>
 		<br/>
 		<div>
