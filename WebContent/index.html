@@ -1,8 +1,11 @@
-<!DOCTYPE html>
-<html ng-app="environmentApp">
+<!doctype html>
+<html id="ng-app" ng-app="environmentApp">
 <head>
 <meta charset="ISO-8859-1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge"> 
 <title>Project Home</title>
+<link rel="stylesheet" href="lib/bootstrap.3.1.1.min.css" media="all">
+<link rel="icon" href="images/home.ico" />
 <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.9/angular.js"></script>
 <script
 	src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.9/angular-resource.min.js"></script>
@@ -21,37 +24,52 @@
 <script src="scripts/directive.js"></script>
 <script src="scripts/filter.js"></script>
 
-<link rel="stylesheet"
-	href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" />
-<link rel="icon" href="images/home.ico" />
+<!--[if lte IE 8]>
+<script src="//cdnjs.cloudflare.com/ajax/libs/json2/20130526/json2.js"></script>
+<script src="https://rawgithub.com/javascript/augment/master/augment.js"></script>
+<script>
+    document.createElement('alert');
+    document.createElement('ng-include');
+    document.createElement('bookviewer');
+    document.createElement('accordion');
+    document.createElement('accordion-group');
+    document.createElement('accordion-heading');
+    document.createElement('display-sonar');
+    document.createElement('display-job');
+    document.createElement('display-env');
+</script>
+<script src="lib/html5shiv.3.7.0.js"></script>
+<script src="lib/respond.3.7.0.min.js"></script>
+<![endif]-->
+
 </head>
 <body>
 	<div ng-controller="EnvironmentAppCtrl">
 		<div ng-if="globalError != null" class="container">
 			<alert type="danger">{{globalError}}</alert>
 		</div>
-		<header ng-if="globalError == null" class="navbar navbar-default">
+		<div ng-if="globalError == null" class="navbar navbar-default">
 			<div class="navbar-inner">
 				<div class="container">
 					<nav>
 						<ul class="nav navbar-nav navbar-inner">
 							<li><a class="navbar-brand" href="index.html"><img
 									ng-src="{{applicationLogo}}" />&nbsp;{{applicationName}}</a></li>
-							<li ng-repeat="applicationLink in applicationLinks"><a
+							<li ng-repeat="applicationLink in applicationLinks"><a href="#"
 								ng-href="{{applicationLink.linkUrl}}" class="navbar-brand"><img
 									ng-src="{{applicationLink.linkLogo}}" />&nbsp;{{applicationLink.linkName}}</a></li>
 							<li ng-if="applicationTools != null" class="dropdown"><a
 								href="#" class="dropdown-toggle" data-toggle="dropdown"><img
 									src="images/toolbox.png" />&nbsp;Outils <span class="caret"></span></a>
 								<ul class="dropdown-menu" role="menu">
-									<li ng-repeat="applicationTool in applicationTools"><a
+									<li ng-repeat="applicationTool in applicationTools"><a href="#"
 										ng-href="{{applicationTool.url}}">{{applicationTool.name}}</a></li>
 								</ul></li>
 						</ul>
 					</nav>
 				</div>
 			</div>
-		</header>
+		</div>
 		<div class="container">
 			<div class="col-md-4">
 				<div ng-repeat="env in envs">
@@ -62,14 +80,13 @@
 				<alert ng-if="jenkinsStatus != null" type="danger">{{jenkinsStatus}}</alert>
 				<div
 					ng-repeat="job in jobs  | orderBy:'-builds[0].number'">
-					<display-job job="job"> </display-env>
+					<display-job job="job"/>
 				</div>
 			</div>
 			<div class="col-md-4">
 				<alert ng-if="sonarStatus != null" type="danger">{{sonarStatus}}</alert>
 				<div ng-repeat="project in sonarAnalysis | orderBy:'name'">
-					<display-sonar project="project" sonar-url="sonarUrl">
-					</display-sonar>
+					<display-sonar project="project" sonar-url="sonarUrl"/>
 				</div>
 			</div>
 		</div>

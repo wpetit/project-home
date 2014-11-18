@@ -1,6 +1,6 @@
 <div class="panel panel-default">
 	<div class="panel-heading">
-		<img ng-src="images/jenkins.png" />&nbsp;<img ng-src="images/{{job.color}}.png" />&nbsp;<img ng-src="images/{{job.healthReport[0].iconUrl}}" title="{{job.healthReport[0].description}}"/>&nbsp;<a href="{{job.url}}">{{job.displayName}}</a>
+		<img ng-src="images/jenkins.png" />&nbsp;<img ng-src="images/{{job.color | jenkinsJobColorFilter}}" />&nbsp;<img ng-src="images/{{job.healthReport[0].iconUrl}}" title="{{job.healthReport[0].description}}"/>&nbsp;<a href="{{job.url}}">{{job.displayName}}</a>
 	</div>
 	<div class="panel-body">
 		<div ng-repeat="build in job.buildsDetails | orderBy:'-number'">

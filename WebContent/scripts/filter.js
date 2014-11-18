@@ -12,6 +12,18 @@ environmentAppFilters.filter('jenkinsStatusColorFilter', function() {
 	};
 });
 
+environmentAppFilters.filter('jenkinsJobColorFilter', function() {
+	return function(color) {
+		var jobColor = "";
+		if (color.indexOf("anime") != -1 ) {
+			jobColor = color + ".gif";
+		} else {
+			jobColor = color + ".png";
+		}
+		return jobColor;
+	};
+});
+
 environmentAppFilters.filter('sonarViolationsChangeStatus', function() {
 	return function(violations) {
 		var violationChangeStatus = null;
@@ -23,6 +35,18 @@ environmentAppFilters.filter('sonarViolationsChangeStatus', function() {
 			violationChangeStatus = "blank_10x10.png";
 		}
 		return violationChangeStatus;
+	};
+});
+
+environmentAppFilters.filter('sonarViolationsChangeDiff', function() {
+	return function(violations) {
+		var violationChangeDiff = '(+0)';
+		if (violations.number > violations.previousNumber) {
+			violationChangeDiff = '(+'+Math.round((violations.number-violations.previousNumber)*100)/100+')';
+		} else if (violations.number < violations.previousNumber) {
+			violationChangeDiff = '('+Math.round((violations.number-violations.previousNumber)*100)/100+')';
+		}
+		return violationChangeDiff;
 	};
 });
 
