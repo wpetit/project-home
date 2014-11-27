@@ -37,6 +37,14 @@
     document.createElement('display-sonar');
     document.createElement('display-job');
     document.createElement('display-env');
+    
+    
+    Array.prototype.indexOf = function(obj, start) {
+    	for (var i = (start || 0), j = this.length; i < j; i++) {
+        	if (this[i] === obj) { return i; }
+    	}
+    	return -1;
+	}
 </script>
 <script src="lib/html5shiv.3.7.0.js"></script>
 <script src="lib/respond.3.7.0.min.js"></script>
@@ -53,7 +61,7 @@
 				<div class="container">
 					<nav>
 						<ul class="nav navbar-nav navbar-inner">
-							<li><a class="navbar-brand" href="index.html"><img
+							<li><a class="navbar-brand" href="index.html"><img src="images/blank_10x10.png"
 									ng-src="{{applicationLogo}}" />&nbsp;{{applicationName}}</a></li>
 							<li ng-repeat="applicationLink in applicationLinks"><a href="#"
 								ng-href="{{applicationLink.linkUrl}}" class="navbar-brand"><img
@@ -76,17 +84,17 @@
 					<display-env env="env"></display-env>
 				</div>
 			</div>
-			<div class="col-md-4">
+			<div class="col-md-4" ng-class="{'col-md-8' : sonarResources.length == 0, 'col-md-4' : sonarResources.length != 0}">
 				<alert ng-if="jenkinsStatus != null" type="danger">{{jenkinsStatus}}</alert>
 				<div
 					ng-repeat="job in jobs  | orderBy:'-builds[0].number'">
 					<display-job job="job"/>
 				</div>
 			</div>
-			<div class="col-md-4">
+			<div class="col-md-4" ng-if="sonarResources.length != 0">
 				<alert ng-if="sonarStatus != null" type="danger">{{sonarStatus}}</alert>
 				<div ng-repeat="project in sonarAnalysis | orderBy:'name'">
-					<display-sonar project="project" sonar-url="sonarUrl"/>
+					<display-sonar project="project" sonar-url="sonarDirectAccessUrl"/>
 				</div>
 			</div>
 		</div>

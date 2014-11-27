@@ -8,7 +8,13 @@ environmentAppControllers.controller('EnvironmentAppCtrl', function($scope,
 			$scope.applicationTools = data.applicationTools;
 			$scope.envs = data.env;
 			$scope.jenkinsJobs = data.jenkinsJobs;
+			$scope.sonarResources = data.sonarResources;
 			$scope.sonarUrl = data.sonarUrl;
+			if(data.sonarDirectAccessUrl == null || data.sonarDirectAccessUrl == "") {
+				$scope.sonarDirectAccessUrl = data.sonarUrl;
+			} else {
+				$scope.sonarDirectAccessUrl = data.sonarDirectAccessUrl;
+			}
 			$scope.jenkinsUrl = data.jenkinsUrl;
 			$scope.sonarPeriod = data.sonarPeriodForComparison;
 			$scope.getJenkinsJobs();
@@ -21,7 +27,7 @@ environmentAppControllers.controller('EnvironmentAppCtrl', function($scope,
 	$scope.getJenkinsJobs = function() {
 		for (i = 0; i < $scope.jenkinsJobs.length; i++) {
 			var jenkinsJob = $scope.jenkinsJobs[i];
-			environmentService.getJobInformation($scope.jenkinsUrl,jenkinsJob.job).success(
+			environmentService.getJobInformation($scope.jenkinsUrl,jenkinsJob).success(
 					function(data) {
 						var job = data;
 						job.buildsDetails = new Array();
@@ -48,8 +54,10 @@ environmentAppControllers.controller('EnvironmentAppCtrl', function($scope,
 		environmentService.getSonarResourcesAndAnalysisPeriod($scope.sonarUrl).success(function(data) {
 			$scope.sonarAnalysis = new Array();
 			for(i=0; i< data.length;i++) {
-				var perdiod =
-				$scope.getResourceAnalysis(data[i].name,data[i].key,data[i].id,$scope.getPeriodDateTime(data[i]));
+				if($scope.sonarResources.length != 0 && $scope.sonarResources.indexOf(data[i].key) != -1) {
+					var perdiod =
+					$scope.getResourceAnalysis(data[i].name,data[i].key,data[i].id,$scope.getPeriodDateTime(data[i]));
+				}
 			}
 		}).error(function(data, status) {
 			$scope.sonarStatus = "Sonar is not available for the moment : Error " + status+".";
