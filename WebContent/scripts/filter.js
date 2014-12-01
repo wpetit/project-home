@@ -53,9 +53,9 @@ environmentAppFilters.filter('sonarViolationsChangeDiff', function() {
 environmentAppFilters.filter('sonarViolationsChangeStatusInverse', function() {
 	return function(violations) {
 		var violationChangeStatus = null;
-		if (violations.number < violations.previousNumber) {
+		if (violations.number > violations.previousNumber) {
 			violationChangeStatus = "sonarGreater_ok.png";
-		} else if (violations.number > violations.previousNumber) {
+		} else if (violations.number < violations.previousNumber) {
 			violationChangeStatus = "sonarLower_ko.png";
 		} else {
 			violationChangeStatus = "blank_10x10.png";
