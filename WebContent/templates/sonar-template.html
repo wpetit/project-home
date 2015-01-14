@@ -1,90 +1,90 @@
 <div class="panel panel-default">
 	<div class="panel-heading">
-		<img ng-src="images/sonar.png" />&nbsp;<a
+		<img ng-src="images/sonar.png" />&nbsp;<a target="_blank"
 			href="{{sonarUrl}}/dashboard/index/{{project.key}}">{{project.name}}</a>
 	</div>
 	<div class="panel-body">
 		<div>
-			<b>Complexity :</b>&nbsp;<a
+			<b>Complexity :</b>&nbsp;<a target="_blank"
 				href="{{sonarUrl}}/drilldown/measures/{{project.id}}?metric=complexity">{{project.complexity.number}}</a>&nbsp;{{project.complexity | sonarViolationsChangeDiff}}&nbsp;<img
 				ng-src="images/{{project.complexity | sonarViolationsChangeStatus}}" />
 		</div>
 		<div>
-			Complexity /method :&nbsp;<a
+			Complexity /method :&nbsp;<a target="_blank"
 				href="{{sonarUrl}}/drilldown/measures/{{project.id}}?metric=function_complexity">{{project.functionComplexity.number}}</a>&nbsp;{{project.functionComplexity | sonarViolationsChangeDiff}}&nbsp;<img
 				ng-src="images/{{project.functionComplexity | sonarViolationsChangeStatus}}" />
 		</div>
 		<div>
-			Complexity /class :&nbsp;<a
+			Complexity /class :&nbsp;<a target="_blank"
 				href="{{sonarUrl}}/drilldown/measures/{{project.id}}?metric=class_complexity">{{project.classComplexity.number}}</a>&nbsp;{{project.classComplexity | sonarViolationsChangeDiff}}&nbsp;<img
 				ng-src="images/{{project.classComplexity | sonarViolationsChangeStatus}}" />
 		</div>
 		<div>
-			Complexity /file :&nbsp;<a
+			Complexity /file :&nbsp;<a target="_blank"
 				href="{{sonarUrl}}/drilldown/measures/{{project.id}}?metric=file_complexity">{{project.fileComplexity.number}}</a>&nbsp;{{project.fileComplexity | sonarViolationsChangeDiff}}&nbsp;<img
 				ng-src="images/{{project.fileComplexity | sonarViolationsChangeStatus}}" />
 		</div>
 		<br/>
 		<div>
-			<b>Duplication :</b>&nbsp;<a
+			<b>Duplication :</b>&nbsp;<a target="_blank"
 				href="{{sonarUrl}}/drilldown/measures/{{project.id}}?highlight=duplicated_lines_density&metric=duplicated_lines">{{project.duplicatedLinesDensity.number}}%</a>&nbsp;{{project.duplicatedLinesDensity | sonarViolationsChangeDiff}}&nbsp;<img
 				ng-src="images/{{project.duplicatedLinesDensity | sonarViolationsChangeStatus}}" />
 		</div>
 		<div>
-			Duplication /line :&nbsp;<a
+			Duplication /line :&nbsp;<a target="_blank"
 				href="{{sonarUrl}}/drilldown/measures/{{project.id}}?metric=duplicated_lines">{{project.duplicatedLines.number}}</a>&nbsp;{{project.duplicatedLines | sonarViolationsChangeDiff}}&nbsp;<img
 				ng-src="images/{{project.duplicatedLines | sonarViolationsChangeStatus}}" />
 		</div>
 		<div>
-			Duplication /block :&nbsp;<a
+			Duplication /block :&nbsp;<a target="_blank"
 				href="{{sonarUrl}}/drilldown/measures/{{project.id}}?metric=duplicated_blocks">{{project.duplicatedBlocks.number}}</a>&nbsp;{{project.duplicatedBlocks | sonarViolationsChangeDiff}}&nbsp;<img
 				ng-src="images/{{project.duplicatedBlocks | sonarViolationsChangeStatus}}" />
 		</div>
 		<div>
-			Duplication /file :&nbsp;<a
+			Duplication /file :&nbsp;<a target="_blank"
 				href="{{sonarUrl}}/drilldown/measures/{{project.id}}?metric=duplicated_files">{{project.duplicatedFiles.number}}</a>&nbsp;{{project.duplicatedFiles | sonarViolationsChangeDiff}}&nbsp;<img
 				ng-src="images/{{project.duplicatedFiles | sonarViolationsChangeStatus}}" />
 		</div>
 		<br ng-if="project.coverage.number != null"/>
 		<div ng-if="project.coverage.number != null">
-			<b>Unit Tests Coverage :</b>&nbsp;<a
+			<b>Unit Tests Coverage :</b>&nbsp;<a target="_blank"
 				href="{{sonarUrl}}/drilldown/measures/{{project.id}}?metric=coverage">{{project.coverage.number}}&nbsp;%</a>&nbsp;{{project.coverage | sonarViolationsChangeDiff}}&nbsp;<img
 				ng-src="images/{{project.coverage | sonarViolationsChangeStatusInverse}}" />
 			
 		</div>
 		<br/>
 		<div>
-			<b>Rules compliance :</b>&nbsp;<a
+			<b>Rules compliance :</b>&nbsp;<a target="_blank"
 				href="{{sonarUrl}}/drilldown/measures/{{project.id}}?highlight=weighted_violations&metric=weighted_violations">{{project.violationsDensity.number}}&nbsp;%</a>
 		</div>
 		<br/>
 		<div>
-			<b>Issues :</b>&nbsp;<a
+			<b>Issues :</b>&nbsp;<a target="_blank"
 				href="{{sonarUrl}}/drilldown/issues/{{project.key}}">{{project.violations.number}}</a>&nbsp;{{project.violations | sonarViolationsChangeDiff}}&nbsp;<img
 				ng-src="images/{{project.violations | sonarViolationsChangeStatus}}" />
 		</div>
 		<div>
-			<img ng-src="images/Blocker.png" />&nbsp;Blocker :&nbsp;<a
+			<img ng-src="images/Blocker.png" />&nbsp;Blocker :&nbsp;<a target="_blank"
 				href="{{sonarUrl}}/drilldown/issues/{{project.key}}?severity=BLOCKER">{{project.blockerViolations.number}}</a>&nbsp;{{project.blockerViolations | sonarViolationsChangeDiff}}&nbsp;<img
 				ng-src="images/{{project.blockerViolations | sonarViolationsChangeStatus}}" />
 		</div>
 		<div>
-			<img ng-src="images/Critical.png" />&nbsp;Critical :&nbsp;<a
+			<img ng-src="images/Critical.png" />&nbsp;Critical :&nbsp;<a target="_blank"
 				href="{{sonarUrl}}/drilldown/issues/{{project.key}}?severity=CRITICAL">{{project.criticalViolations.number}}</a>&nbsp;{{project.criticalViolations | sonarViolationsChangeDiff}}&nbsp;<img
 				ng-src="images/{{project.criticalViolations | sonarViolationsChangeStatus}}" />
 		</div>
 		<div>
-			<img ng-src="images/Major.png" />&nbsp;Major :&nbsp;<a
+			<img ng-src="images/Major.png" />&nbsp;Major :&nbsp;<a target="_blank"
 				href="{{sonarUrl}}/drilldown/issues/{{project.key}}?severity=MAJOR">{{project.majorViolations.number}}</a>&nbsp;{{project.majorViolations | sonarViolationsChangeDiff}}&nbsp;<img
 				ng-src="images/{{project.majorViolations | sonarViolationsChangeStatus}}" />
 		</div>
 		<div>
-			<img ng-src="images/Minor.png" />&nbsp;Minor :&nbsp;<a
+			<img ng-src="images/Minor.png" />&nbsp;Minor :&nbsp;<a target="_blank"
 				href="{{sonarUrl}}/drilldown/issues/{{project.key}}?severity=MINOR">{{project.minorViolations.number}}</a>&nbsp;{{project.minorViolations | sonarViolationsChangeDiff}}&nbsp;<img
 				ng-src="images/{{project.minorViolations | sonarViolationsChangeStatus}}" />
 		</div>
 		<div>
-			<img ng-src="images/Info.png" />&nbsp;Info :&nbsp;<a
+			<img ng-src="images/Info.png" />&nbsp;Info :&nbsp;<a target="_blank"
 				href="{{sonarUrl}}/drilldown/issues/{{project.key}}?severity=INFO">{{project.infoViolations.number}}</a>&nbsp;{{project.infoViolations | sonarViolationsChangeDiff}}&nbsp;<img
 				ng-src="images/{{project.infoViolations | sonarViolationsChangeStatus}}" />
 		</div>

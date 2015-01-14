@@ -2,7 +2,7 @@
 	<div class="panel-heading"><img ng-src="images/server.png" />&nbsp;{{env.name}}</div>
 	<div class="panel-body">
 		<div ng-repeat="links in env.urls">
-			<a href="{{links.url}}">{{links.urlName}}</a>
+			<a target="_blank" href="{{links.url}}">{{links.urlName}}</a>
 		</div>
 	</div>
 </div>
