@@ -3,33 +3,34 @@
 <head>
 <meta charset="ISO-8859-1">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<title>Project Home</title>
+
 <link rel="stylesheet"
 	href="bower_components/bootstrap/dist/css/bootstrap.css" />
 <link rel="stylesheet"
 	href="http://cdnjs.cloudflare.com/ajax/libs/angularjs-toaster/0.4.10/toaster.css" />
 <link rel="icon" href="images/home.ico" />
-
+<title>Project Home</title>
+<link rel="stylesheet" href="styles/style.css" />
 </head>
 <body>
 	<div ng-controller="EnvironmentAppCtrl">
 
 
 		<div ng-if="globalError != null" class="container">
-			<alert type="danger">{{globalError}}</alert>
+			<alert type="danger text-center">{{globalError}}</alert>
 		</div>
-		<div ng-if="globalError == null" class="navbar navbar-default">
+		<div ng-if="globalError == null" class="navbar navbar-inverse">
 			<div class="navbar-inner">
 				<div class="container">
 					<nav>
 						<a href="index.html" class="navbar-brand"><img
-									ng-src="{{applicationLogo}}"/>&nbsp;{{applicationName}}</a>
+							ng-src="{{applicationLogo}}" />&nbsp;{{applicationName}}</a>
 						<ul class="nav navbar-nav navbar-inner">
 							<li ng-repeat="applicationLink in applicationLinks"><a
 								target="_blank" href="#" ng-href="{{applicationLink.linkUrl}}"><img
 									ng-src="{{applicationLink.linkLogo}}" />&nbsp;{{applicationLink.linkName}}</a></li>
 							<li ng-if="applicationTools != null" class="dropdown" dropdown>
-								<a href class="dropdown-toggle" dropdown-toggle><img
+								<a href="#" class="dropdown-toggle" dropdown-toggle><img
 									src="images/toolbox.png" />&nbsp;Outils <span class="caret"></span></a>
 								<ul class="dropdown-menu" role="menu">
 									<li ng-repeat="applicationTool in applicationTools"><a
@@ -53,15 +54,18 @@
 			<div class="col-md-4"
 				ng-class="{'col-md-8' : sonarResources.length == 0, 'col-md-4' : sonarResources.length != 0}">
 				<alert ng-if="jenkinsStatus != null" type="danger">{{jenkinsStatus}}</alert>
-				<div ng-repeat="job in jobs  | orderBy:'-builds[0].number'">
-					<display-job job="job" />
-				</div>
+				<accordion> <display-job class="display-job" job="job"
+					expand="{{$index===0}}"
+					ng-repeat="job in jobs  | orderBy:'-builds[0].number'" /> </accordion>
 			</div>
 			<div class="col-md-4" ng-if="sonarResources.length != 0">
 				<alert ng-if="sonarStatus != null" type="danger">{{sonarStatus}}</alert>
-				<div ng-repeat="project in sonarAnalysis | orderBy:'name'">
-					<display-sonar project="project" sonar-url="sonarDirectAccessUrl" />
-				</div>
+				<accordion> <display-sonar project="project"
+					sonar-url="sonarDirectAccessUrl" expand="{{$index===0}}"
+					ng-repeat="project in sonarAnalysis | orderBy:'name'" />
+				
+				
+			</accordion>
 			</div>
 		</div>
 	</div>

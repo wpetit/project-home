@@ -1,9 +1,8 @@
-<div class="panel panel-default">
-	<div class="panel-heading">
+<accordion-group ng-init="status.open= (expand==='true')"  is-open="status.open" class="panel-default">
+	<accordion-heading>
 		<img ng-src="images/sonar.png" />&nbsp;<a target="_blank"
 			href="{{sonarUrl}}/dashboard/index/{{project.key}}">{{project.name}}</a>
-	</div>
-	<div class="panel-body">
+	</accordion-heading>
 		<div>
 			<b>Complexity :</b>&nbsp;<a target="_blank"
 				href="{{sonarUrl}}/drilldown/measures/{{project.id}}?metric=complexity">{{project.complexity.number}}</a>&nbsp;{{project.complexity | sonarViolationsChangeDiff}}&nbsp;<img
@@ -88,5 +87,4 @@
 				href="{{sonarUrl}}/drilldown/issues/{{project.key}}?severity=INFO">{{project.infoViolations.number}}</a>&nbsp;{{project.infoViolations | sonarViolationsChangeDiff}}&nbsp;<img
 				ng-src="images/{{project.infoViolations | sonarViolationsChangeStatus}}" />
 		</div>
-	</div>
-</div>
+</accordion-group>

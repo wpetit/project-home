@@ -1,13 +1,18 @@
-<div class="panel panel-default">
-	<div class="panel-heading">
-		<img ng-src="images/jenkins.png" />&nbsp;<img ng-src="images/{{job.color | jenkinsJobColorFilter}}" />&nbsp;<img ng-src="images/{{job.healthReport[0].iconUrl}}" title="{{job.healthReport[0].description}}"/>&nbsp;<a target="_blank" href="{{job.url}}">{{job.displayName}}</a>
+<accordion-group ng-init="status.open= (expand==='true')" is-open="status.open" class="panel-default">
+	<accordion-heading>
+		<span class="pull-right glyphicon" ng-class="{'glyphicon-collapse-up': status.open, 'glyphicon-collapse-down': !status.open}"></span>
+		&nbsp;<img ng-src="images/jenkins.png" />&nbsp;<img
+		ng-src="images/{{job.color | jenkinsJobColorFilter}}" />&nbsp;<img
+		ng-src="images/{{job.healthReport[0].iconUrl}}"
+		title="{{job.healthReport[0].description}}" />&nbsp;<a target="_blank"
+		href="{{job.url}}">{{job.displayName}}</a>
+	</accordion-heading>
+	<div ng-repeat="build in job.buildsDetails | orderBy:'-number'">
+		<div>
+		<img ng-src="images/{{build.result | jenkinsStatusColorFilter}}.png" /><a
+			target="_blank" href="{{build.url}}">Build {{build.number}}</a> :
+		<ul>
+			<li ng-repeat="change in build.changeSet.items"><b>{{change.author.fullName}}&nbsp;:</b>&nbsp;{{change.msg}}</li>
+		</ul>
 	</div>
-	<div class="panel-body">
-		<div ng-repeat="build in job.buildsDetails | orderBy:'-number'">
-			<div>
-				<img ng-src="images/{{build.result | jenkinsStatusColorFilter}}.png" /><a target="_blank"
-					href="{{build.url}}">Build {{build.number}}</a> : <ul><li ng-repeat="change in build.changeSet.items"><b>{{change.author.fullName}}&nbsp;:</b>&nbsp;{{change.msg}}</li></ul>
-			</div>
-		</div>
-	</div>
-</div>
+</accordion-group>

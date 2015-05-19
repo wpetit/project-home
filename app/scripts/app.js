@@ -1,7 +1,12 @@
+/* global app: true */
+/* global appControllers: true */
+/* global appFilters: true */
+"use strict";
+
 var app = angular.module('environmentApp', [ 'ngRoute', 'ui.bootstrap',
-		'environmentAppControllers', 'environmentAppFilters']);
+		'appControllers', 'appFilters']);
 
-var environmentAppControllers = angular.module('environmentAppControllers', []);
+var appControllers = angular.module('appControllers', []);
 
-var environmentAppFilters = angular.module('environmentAppFilters', []);
+var appFilters = angular.module('appFilters', []);
 

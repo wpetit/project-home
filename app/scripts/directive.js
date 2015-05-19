@@ -1,3 +1,5 @@
+"use strict";
+
 app.directive('displayEnv', function() {
 	return {
 		restrict: 'E',
@@ -5,17 +7,18 @@ app.directive('displayEnv', function() {
 	        env: '=env'
 	    },
 		templateUrl: 'templates/env-template.html'
-	}
+	};
 });
 
 app.directive('displayJob', function() {
 	return {
 		restrict: 'E',
 	    scope: {
-	        job: '=job'
+	        job: '=job',
+	        expand: '@'
 	    },
 		templateUrl: 'templates/build-template.html'
-	}
+	};
 });
 
 app.directive('displaySonar', function() {
@@ -23,8 +26,9 @@ app.directive('displaySonar', function() {
 		restrict: 'E',
 	    scope: {
 	        project: '=project',
-	        sonarUrl: '=sonarUrl'
+	        sonarUrl: '=sonarUrl',
+	        expand: '@'
 	    },
 		templateUrl: 'templates/sonar-template.html'
-	}
+	};
 });

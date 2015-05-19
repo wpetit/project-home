@@ -1,9 +1,11 @@
-environmentAppFilters.filter('jenkinsStatusColorFilter', function() {
+"use strict";
+
+appFilters.filter('jenkinsStatusColorFilter', function() {
 	return function(status) {
 		var color = "";
-		if (status == "SUCCESS") {
+		if (status === "SUCCESS") {
 			color = "blue";
-		} else if (status == "FAILURE") {
+		} else if (status === "FAILURE") {
 			color = "red";
 		} else {
 			color = "yellow";
@@ -12,10 +14,10 @@ environmentAppFilters.filter('jenkinsStatusColorFilter', function() {
 	};
 });
 
-environmentAppFilters.filter('jenkinsJobColorFilter', function() {
+appFilters.filter('jenkinsJobColorFilter', function() {
 	return function(color) {
 		var jobColor = "";
-		if (color.indexOf("anime") != -1 ) {
+		if (color.indexOf("anime") !== -1 ) {
 			jobColor = color + ".gif";
 		} else {
 			jobColor = color + ".png";
@@ -24,7 +26,7 @@ environmentAppFilters.filter('jenkinsJobColorFilter', function() {
 	};
 });
 
-environmentAppFilters.filter('sonarViolationsChangeStatus', function() {
+appFilters.filter('sonarViolationsChangeStatus', function() {
 	return function(violations) {
 		var violationChangeStatus = null;
 		if (violations.number > violations.previousNumber) {
@@ -38,7 +40,7 @@ environmentAppFilters.filter('sonarViolationsChangeStatus', function() {
 	};
 });
 
-environmentAppFilters.filter('sonarViolationsChangeDiff', function() {
+appFilters.filter('sonarViolationsChangeDiff', function() {
 	return function(violations) {
 		var violationChangeDiff = '(+0)';
 		if (violations.number > violations.previousNumber) {
@@ -50,7 +52,7 @@ environmentAppFilters.filter('sonarViolationsChangeDiff', function() {
 	};
 });
 
-environmentAppFilters.filter('sonarViolationsChangeStatusInverse', function() {
+appFilters.filter('sonarViolationsChangeStatusInverse', function() {
 	return function(violations) {
 		var violationChangeStatus = null;
 		if (violations.number > violations.previousNumber) {
