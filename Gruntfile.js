@@ -59,7 +59,7 @@ module.exports = function(grunt) {
 			},
 			files : [ '<%= yeoman.app %>/{,*/}*.html',
 				'.tmp/styles/{,*/}*.css',
-				'<%= yeoman.app %>/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}' ]
+				'<%= yeoman.app %>/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg,ico}' ]
 		    }
 		},
 
@@ -201,7 +201,7 @@ module.exports = function(grunt) {
 			src : [
 				'<%= yeoman.dist %>/scripts/{,*/}*.js',
 				'<%= yeoman.dist %>/styles/{,*/}*.css',
-				'<%= yeoman.dist %>/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}',
+				//'<%= yeoman.dist %>/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}',
 				'<%= yeoman.dist %>/styles/fonts/*' ]
 		    }
 		},
@@ -246,30 +246,30 @@ module.exports = function(grunt) {
 		// minification. These next options are pre-configured if you do
 		// not wish
 		// to use the Usemin blocks.
-		cssmin : {
-		    dist : {
-			files : {
-			    '<%= yeoman.dist %>/styles/main.css' : [ '.tmp/styles/{,*/}*.css' ]
-			}
-		    }
-		},
-		uglify : {
-		    dist : {
-			files : {
-			    '<%= yeoman.dist %>/scripts/scripts.js' : [ '<%= yeoman.dist %>/scripts/scripts.js' ]
-			}
-		    }
-		},
-		concat : {
-		    dist : {}
-		},
+		//cssmin : {
+		//    dist : {
+		//	files : {
+		//	    '<%= yeoman.dist %>/styles/main.css' : [ '.tmp/styles/{,*/}*.css' ]
+		//	}
+		//    }
+		//},
+		//uglify : {
+		//    dist : {
+		//	files : {
+		//	    '<%= yeoman.dist %>/scripts/scripts.js' : [ '<%= yeoman.dist %>/scripts/scripts.js' ]
+		//	}
+		//    }
+		//},
+		//concat : {
+		//    dist : {}
+		//},
 
 		imagemin : {
 		    dist : {
 			files : [ {
 			    expand : true,
 			    cwd : '<%= yeoman.app %>/images',
-			    src : '{,*/}*.{png,jpg,jpeg,gif}',
+			    src : '{,*/}*.{png,jpg,jpeg,gif,ico}',
 			    dest : '<%= yeoman.dist %>/images'
 			} ]
 		    }
@@ -363,6 +363,7 @@ module.exports = function(grunt) {
 		    server : [ 'copy:styles' ],
 		    test : [ 'copy:styles' ],
 		    dist : [ 'copy:styles', 'imagemin', 'svgmin' ]
+		
 		},
 
 		// Test settings
@@ -385,16 +386,6 @@ module.exports = function(grunt) {
 			'concurrent:server', 'autoprefixer:server',
 			'configureProxies', 'connect:livereload', 'watch' ]);
 	    });
-
-    grunt
-	    .registerTask(
-		    'server',
-		    'DEPRECATED TASK. Use the "serve" task instead',
-		    function(target) {
-			grunt.log
-				.warn('The `server` task has been deprecated. Use `grunt serve` to start a server.');
-			grunt.task.run([ 'serve:' + target ]);
-		    });
 
     grunt.registerTask('test', [ 'clean:server', 'wiredep', 'concurrent:test',
 	    'autoprefixer', 'connect:test', 'karma' ]);

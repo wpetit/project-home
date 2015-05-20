@@ -6,7 +6,7 @@ app.directive('displayEnv', function() {
 	    scope: {
 	        env: '=env'
 	    },
-		templateUrl: 'templates/env-template.html'
+		templateUrl: 'views/env-template.html'
 	};
 });
 
@@ -17,7 +17,7 @@ app.directive('displayJob', function() {
 	        job: '=job',
 	        expand: '@'
 	    },
-		templateUrl: 'templates/build-template.html'
+		templateUrl: 'views/build-template.html'
 	};
 });
 
@@ -29,6 +29,6 @@ app.directive('displaySonar', function() {
 	        sonarUrl: '=sonarUrl',
 	        expand: '@'
 	    },
-		templateUrl: 'templates/sonar-template.html'
+		templateUrl: 'views/sonar-template.html'
 	};
 });
