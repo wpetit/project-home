@@ -72,6 +72,12 @@ module.exports = function(grunt) {
 			hostname : 'localhost',
 			livereload : 35729
 		    },
+		    proxies : [ {
+			context : '/jenkins',
+			host : 'frnsdouintgun04',
+			port : 8080,
+			changeOrigin : true
+		    } ],
 		    livereload : {
 			options : {
 			    open : true,
@@ -246,13 +252,13 @@ module.exports = function(grunt) {
 		// minification. These next options are pre-configured if you do
 		// not wish
 		// to use the Usemin blocks.
-		//cssmin : {
-		//    dist : {
-		//	files : {
-		//	    '<%= yeoman.dist %>/styles/main.css' : [ '.tmp/styles/{,*/}*.css' ]
-		//	}
-		//    }
-		//},
+		cssmin : {
+		    dist : {
+			files : {
+			    '<%= yeoman.dist %>/styles/main.css' : [ '.tmp/styles/{,*/}*.css' ]
+			}
+		    }
+		},
 		//uglify : {
 		//    dist : {
 		//	files : {
@@ -372,6 +378,18 @@ module.exports = function(grunt) {
 			configFile : 'test/karma.conf.js',
 			singleRun : true
 		    }
+		},
+		
+		// make a zipfile
+		compress: {
+		  main: {
+		    options: {
+		      archive: 'dist/project-home.zip'
+		    },
+		    files : [
+		             { expand: true, src : "**/*", cwd : "dist/" }
+		           ]
+		  }
 		}
 	    });
 
@@ -393,7 +411,7 @@ module.exports = function(grunt) {
     grunt.registerTask('build', [ 'clean:dist', 'wiredep', 'useminPrepare',
 	    'concurrent:dist', 'autoprefixer', 'concat', 'ngAnnotate',
 	    'copy:dist', 'cdnify', 'cssmin', 'uglify', 'filerev', 'usemin',
-	    'htmlmin' ]);
+	    'htmlmin', 'compress' ]);
 
     grunt.registerTask('default', [ 'newer:jshint', 'test', 'build' ]);
 };
