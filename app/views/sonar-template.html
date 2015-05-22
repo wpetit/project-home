@@ -1,6 +1,7 @@
 <accordion-group ng-init="status.open= (expand==='true')"  is-open="status.open" class="panel-default">
 	<accordion-heading>
-		<img ng-src="images/sonar.png" />&nbsp;<a target="_blank"
+		<span class="pull-right glyphicon" ng-class="{'glyphicon-collapse-up': status.open, 'glyphicon-collapse-down': !status.open}"></span>
+		&nbsp;<img ng-src="images/sonar.png" />&nbsp;<a target="_blank"
 			href="{{sonarUrl}}/dashboard/index/{{project.key}}">{{project.name}}</a>
 	</accordion-heading>
 		<div>

@@ -24,6 +24,8 @@ appControllers
 					    }
 					    $scope.jenkinsUrl = data.jenkinsUrl;
 					    $scope.sonarPeriod = data.sonarPeriodForComparison;
+					    $scope.expandAllJenkins = data.expandAllJenkins;
+					    $scope.expandAllSonar = data.expandAllSonar;
 					    $scope.getJenkinsJobs();
 					    $scope.getSonarViolations();
 					})

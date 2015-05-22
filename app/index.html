@@ -58,14 +58,14 @@
 			<div class="col-md-4"
 				ng-class="{'col-md-8' : sonarResources.length == 0, 'col-md-4' : sonarResources.length != 0}">
 				<alert ng-if="jenkinsStatus != null" type="danger">{{jenkinsStatus}}</alert>
-				<accordion> <display-job class="display-job" job="job"
-					expand="{{$index===0}}"
+				<accordion close-others={{!expandAllJenkins}}> <display-job class="display-job" job="job"
+					expand="{{$index===0 || expandAllJenkins}}"
 					ng-repeat="job in jobs  | orderBy:'-builds[0].number'" /> </accordion>
 			</div>
 			<div class="col-md-4" ng-if="sonarResources.length != 0">
 				<alert ng-if="sonarStatus != null" type="danger">{{sonarStatus}}</alert>
-				<accordion> <display-sonar project="project"
-					sonar-url="sonarDirectAccessUrl" expand="{{$index===0}}"
+				<accordion close-others={{!expandAllSonar}}> <display-sonar class="display-sonar" project="project"
+					sonar-url="sonarDirectAccessUrl" expand="{{$index===0 || expandAllSonar}}"
 					ng-repeat="project in sonarAnalysis | orderBy:'name'" /> </accordion>
 			</div>
 		</div>
