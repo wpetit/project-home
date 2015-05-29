@@ -17,9 +17,7 @@ appControllers.controller('EnvironmentAppCtrl', function($scope, environmentServ
 		$scope.sonarDirectAccessUrl = data.sonarDirectAccessUrl;
 	    }
 	    $scope.jenkinsUrl = data.jenkinsUrl;
-	    $scope.jenkinsBase64UsrPwd = data.jenkinsBase64UsrPwd;
 	    $scope.sonarPeriod = data.sonarPeriodForComparison;
-	    $scope.sonarBase64UsrPwd = data.sonarBase64UsrPwd;
 	    $scope.expandAllJenkins = data.expandAllJenkins;
 	    $scope.expandAllSonar = data.expandAllSonar;
 	    $scope.getJenkinsJobs();
@@ -36,7 +34,7 @@ appControllers.controller('EnvironmentAppCtrl', function($scope, environmentServ
     };
 
     $scope.getJenkinsJob = function(jenkinsJob) {
-	environmentService.getJobInformation($scope.jenkinsUrl, jenkinsJob, $scope.jenkinsBase64UsrPwd).success(function(data) {
+	environmentService.getJobInformation($scope.jenkinsUrl, jenkinsJob).success(function(data) {
 	    var job = data;
 	    job.buildsDetails = [];
 	    $scope.jobs.push(job);
@@ -53,7 +51,7 @@ appControllers.controller('EnvironmentAppCtrl', function($scope, environmentServ
     };
 
     $scope.getJenkinsBuild = function(job, build) {
-	environmentService.getBuildDetail($scope.jenkinsUrl, build, $scope.jenkinsBase64UsrPwd).success(function(data) {
+	environmentService.getBuildDetail($scope.jenkinsUrl, build).success(function(data) {
 	    job.buildsDetails.push(data);
 	}).error(function(data, status) {
 	    $scope.jenkinsStatus = "Jenkins is not available for the moment : Error " + status + ".";
@@ -61,7 +59,7 @@ appControllers.controller('EnvironmentAppCtrl', function($scope, environmentServ
     };
 
     $scope.getSonarViolations = function() {
-	environmentService.getSonarResourcesAndAnalysisPeriod($scope.sonarUrl, $scope.sonarBase64UsrPwd).success(function(data) {
+	environmentService.getSonarResourcesAndAnalysisPeriod($scope.sonarUrl).success(function(data) {
 	    $scope.sonarAnalysis = [];
 	    for (var i = 0; i < data.length; i++) {
 		if ($scope.sonarResources.length !== 0 && $scope.sonarResources.indexOf(data[i].key) !== -1) {
@@ -86,7 +84,7 @@ appControllers.controller('EnvironmentAppCtrl', function($scope, environmentServ
     };
 
     $scope.getResourceAnalysis = function(resourceName, resourceKey, resourceId, fromDateTime) {
-	environmentService.getSonarViolationsByResourceAndTime($scope.sonarUrl, resourceKey, fromDateTime, $scope.sonarBase64UsrPwd).success(function(dataByResource) {
+	environmentService.getSonarViolationsByResourceAndTime($scope.sonarUrl, resourceKey, fromDateTime).success(function(dataByResource) {
 	    if (fromDateTime != null) {
 		var resourceAnalysis = {};
 		resourceAnalysis.name = resourceName;
