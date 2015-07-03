@@ -12,7 +12,7 @@ Project-home is a website to display :
 Installation
 ------------
 To install project-home :
-- download sources
+- Download sources
 - Package the project with the command "grunt"
-- create an environment.json file in the resources folder with the format described below
+- Create an environment.json file in the resources folder with the format described below
 
