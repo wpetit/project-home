@@ -140,6 +140,9 @@ appControllers.controller('EnvironmentAppCtrl', function($scope, environmentServ
 		resourceAnalysis.coverage = {};
 		resourceAnalysis.coverage.previousNumber = dataByResource[0].cells[0].v[$scope.arrayObjectIndexOf(dataByResource[0].cols,'coverage','metric')];
 		resourceAnalysis.coverage.number = dataByResource[0].cells[dataByResource[0].cells.length - 1].v[$scope.arrayObjectIndexOf(dataByResource[0].cols,'coverage','metric')];
+		resourceAnalysis.sqaleIndex = {};
+		resourceAnalysis.sqaleIndex.previousNumber = dataByResource[0].cells[0].v[$scope.arrayObjectIndexOf(dataByResource[0].cols,'sqale_index','metric')];
+		resourceAnalysis.sqaleIndex.number = dataByResource[0].cells[dataByResource[0].cells.length - 1].v[$scope.arrayObjectIndexOf(dataByResource[0].cols,'sqale_index','metric')];
 
 		$scope.sonarAnalysis.push(resourceAnalysis);
 	    }

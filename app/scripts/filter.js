@@ -65,3 +65,24 @@ appFilters.filter('sonarViolationsChangeStatusInverse', function() {
 		return violationChangeStatus;
 	};
 });
+
+appFilters.filter('technicalDebtFilter', function() {
+	return function(technicalDebt) {
+		var technicalDebtLabel = "";
+		var days = Math.floor( technicalDebt / 24 / 60);
+		var hours = Math.floor( technicalDebt / 60 % 24);          
+		var minutes = technicalDebt % 60;
+		
+		if(days !== 0) {
+		    technicalDebtLabel += days+"d ";
+		}
+		if(hours !== 0) {
+		    technicalDebtLabel += hours+"h ";
+		}
+		if(minutes !== 0) {
+		    technicalDebtLabel += minutes+"min";
+		}
+
+		return technicalDebtLabel;
+	};
+});

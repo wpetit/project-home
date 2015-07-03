@@ -45,8 +45,8 @@
 				href="{{sonarUrl}}/drilldown/measures/{{project.id}}?metric=duplicated_files">{{project.duplicatedFiles.number}}</a>&nbsp;{{project.duplicatedFiles | sonarViolationsChangeDiff}}&nbsp;<img
 				ng-src="images/{{project.duplicatedFiles | sonarViolationsChangeStatus}}" />
 		</div>
-		<br ng-if="project.coverage.number != null"/>
-		<div ng-if="project.coverage.number != null">
+		<br ng-if="project.coverage.number !== null"/>
+		<div ng-if="project.coverage.number !== null">
 			<b>Unit Tests Coverage :</b>&nbsp;<a target="_blank"
 				href="{{sonarUrl}}/drilldown/measures/{{project.id}}?metric=coverage">{{project.coverage.number}}&nbsp;%</a>&nbsp;{{project.coverage | sonarViolationsChangeDiff}}&nbsp;<img
 				ng-src="images/{{project.coverage | sonarViolationsChangeStatusInverse}}" />
@@ -54,8 +54,8 @@
 		</div>
 		<br/>
 		<div>
-			<b>Rules compliance :</b>&nbsp;<a target="_blank"
-				href="{{sonarUrl}}/drilldown/measures/{{project.id}}?highlight=weighted_violations&metric=weighted_violations">{{project.violationsDensity.number}}&nbsp;%</a>
+			<b>Technical debt :</b>&nbsp;<a target="_blank"
+				href="{{sonarUrl}}/drilldown/measures/{{project.id}}?sqale_index">{{project.sqaleIndex.number | technicalDebtFilter}}&nbsp;</a>
 		</div>
 		<br/>
 		<div>

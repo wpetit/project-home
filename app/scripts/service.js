@@ -18,6 +18,6 @@ app.service('environmentService', function($http) {
 	};
 	this.getSonarViolationsByResourceAndTime = function(sonarUrl,resourceKey,fromDate, authBase64) {
 	    var headers = authBase64 !== null ? {authorization : "Basic "+ authBase64} : {};
-    	    return $http.get(sonarUrl+'/api/timemachine?resource='+resourceKey+'&fromDateTime='+fromDate+'&metrics=violations,blocker_violations,critical_violations,major_violations,minor_violations,info_violations,violations_density,complexity,class_complexity,file_complexity,function_complexity,duplicated_blocks,duplicated_files,duplicated_lines,duplicated_lines_density,coverage', {headers : headers});
+    	    return $http.get(sonarUrl+'/api/timemachine?resource='+resourceKey+'&fromDateTime='+fromDate+'&metrics=violations,blocker_violations,critical_violations,major_violations,minor_violations,info_violations,complexity,class_complexity,file_complexity,function_complexity,duplicated_blocks,duplicated_files,duplicated_lines,duplicated_lines_density,coverage,sqale_index', {headers : headers});
 	};
 });
