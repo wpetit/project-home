@@ -69,8 +69,8 @@ appFilters.filter('sonarViolationsChangeStatusInverse', function() {
 appFilters.filter('technicalDebtFilter', function() {
 	return function(technicalDebt) {
 		var technicalDebtLabel = "";
-		var days = Math.floor( technicalDebt / 24 / 60);
-		var hours = Math.floor( technicalDebt / 60 % 24);          
+		var days = Math.floor( technicalDebt / 8 / 60);
+		var hours = Math.floor( technicalDebt / 60 % 8);          
 		var minutes = technicalDebt % 60;
 		
 		if(days !== 0) {
