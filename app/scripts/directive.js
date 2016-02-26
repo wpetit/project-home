@@ -13,10 +13,18 @@ app.directive('displayEnv', function() {
 app.directive('displayJob', function() {
 	return {
 		restrict: 'E',
-	    scope: {
-	        job: '=job',
-	        expand: '@'
-	    },
+    	    	scope: {
+    	    	    job: '=job',
+    	    	    jenkinsUrl: '=jenkinsUrl',
+    	    	    expand: '@'
+    	    	},
+    	    	controller : ['$scope', 'environmentService', '$window', function($scope, environmentService, $window) {
+    	    	   $scope.triggerBuild = function() {
+    	    	       environmentService.triggerBuild($scope.jenkinsUrl, $scope.job.displayName).then(function() {
+    	    		   $window.location.reload();
+    	    	       });
+    	    	   };
+    	    	}],
 		templateUrl: 'views/build-template.html'
 	};
 });

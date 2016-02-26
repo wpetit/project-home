@@ -5,7 +5,7 @@
 		ng-src="images/{{job.color | jenkinsJobColorFilter}}" />&nbsp;<img
 		ng-src="images/{{job.healthReport[0].iconUrl}}"
 		title="{{job.healthReport[0].description}}" />&nbsp;<a target="_blank"
-		href="{{job.url}}">{{job.displayName}}</a>
+		href="{{job.url}}">{{job.displayName}}</a>&nbsp;<a href="" ng-click="triggerBuild()"><img ng-src="images/build.png" alt="Build"/></a>
 	</accordion-heading>
 	<div ng-repeat="build in job.buildsDetails | orderBy:'-number'">
 		<div>

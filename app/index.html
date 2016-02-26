@@ -25,7 +25,8 @@
 				<div class="container">
 					<nav>
 						<a href="index.html" class="navbar-brand"><img
-							ng-src="{{applicationLogo}}" />&nbsp;{{applicationName}}</a>
+							ng-src="{{applicationLogo}}" />&nbsp;</a>
+						<a href="index.html" class="navbar-brand">&nbsp;{{applicationName}}</a>
 						<ul class="nav navbar-nav navbar-inner">
 							<li ng-repeat="applicationLink in applicationLinks"><a
 								target="_blank" href="#" ng-href="{{applicationLink.linkUrl}}"><img
@@ -59,7 +60,7 @@
 				ng-class="{'col-md-8' : sonarResources.length == 0, 'col-md-4' : sonarResources.length != 0}">
 				<alert ng-if="jenkinsStatus != null" type="danger">{{jenkinsStatus}}</alert>
 				<accordion close-others={{!expandAllJenkins}}> <display-job class="display-job" job="job"
-					expand="{{$index===0 || expandAllJenkins}}"
+					expand="{{$index===0 || expandAllJenkins}}" jenkins-url="jenkinsUrl"
 					ng-repeat="job in jobs  | orderBy:'-builds[0].number'" /> </accordion>
 			</div>
 			<div class="col-md-4" ng-if="sonarResources.length != 0">

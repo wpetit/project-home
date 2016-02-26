@@ -1,8 +1,8 @@
 "use strict";
 
 appControllers.controller('EnvironmentAppCtrl', function($scope, environmentService, $location, $modal) {
-    $scope.getAll = function() {
-	environmentService.getAll().success(function(data) {
+    $scope.getConfiguration = function() {
+	environmentService.getConfiguration().then(function(data) {
 	    $scope.applicationName = data.applicationName;
 	    $scope.applicationLogo = data.applicationLogo;
 	    $scope.applicationLinks = data.applicationLinks;
@@ -24,7 +24,7 @@ appControllers.controller('EnvironmentAppCtrl', function($scope, environmentServ
 	    $scope.expandAllSonar = data.expandAllSonar;
 	    $scope.getJenkinsJobs();
 	    $scope.getSonarViolations();
-	}).error(function(data) {
+	},function(data) {
 	    $scope.globalError = "The project has not been customized. Please configure the environment.json file.";
 	});
     };
@@ -171,5 +171,5 @@ appControllers.controller('EnvironmentAppCtrl', function($scope, environmentServ
     $scope.jenkinsStatus = null;
     $scope.sonarStatus = null;
     $scope.jobs = [];
-    $scope.getAll();
+    $scope.getConfiguration();
 });
